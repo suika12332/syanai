@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+.input-box{
+  position:relative;
+  margin:10px 0;
+}
+.input-box > input{
+  background:transparent;
+  border:none;
+  border-bottom: solid 1px #ccc;
+  padding:20px 0px 5px 0px;
+  font-size:14pt;
+  width:100%;
+}
+input::placeholder{
+	color:transparent;
+}
+</style>
+</head>
+<body>
+	<form action="/podlogin" id="podlog" name="podlog" method="post">
+		id:<input type="text" id="id" name="id"><br/>
+		pw:<input type="password" id="pw" name="pw"><br/>
+		<button type="button" id="login" name="login">ログイン</button>	
+	</form>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="/js/podlogin.js"></script>
+</body>
+</html>

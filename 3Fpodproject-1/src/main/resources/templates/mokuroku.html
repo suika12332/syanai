@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	
+	.pageing{
+		text-align: center;
+	}
+	.bango {
+
+        background-color: #FFFFE0;
+
+        color: darkslategray;
+
+        font-size: 1.3em;
+
+        text-decoration: none;
+
+    }
+</style>
+</head>
+<link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
+
+<body>
+<span th:text="${session.loginsyain}"></span><span th:if="${session.loginsyain =='鮎澤香織'}">(морщинистая бабушка)쭈글쭈글 할망탱이</span>さん！！いらっしゃい！！！
+
+<form action="/podlogout" method="post">
+<input type="submit" class="btn btn-danger" value="ログアウト">
+</form>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<div id="kensakujoken">
+<form th:action="@{/podjoken}" name="joken" method="post">
+	<div id="iraibango">
+	指示番号：　<input type="text" id="iraibango1" name="iraibango1">
+			
+				-
+			<input type="text" id="iraibango2" name="iraibango2">
+			
+				-
+			<input type="text" id="iraibango3" name="iraibango3">
+	</div>
+	加工情報：<select id="kakoujouhou" name="kakoujouhou">
+				<option value="none">===検索したい名前を選択してください。===</option>
+				<option value="化粧断裁">化粧断裁</option>
+				<option value="刷本納品">刷本納品</option>
+				<option value="穴あけ">穴あけ</option>
+				<option value="スジ押し">スジ押し</option>
+				<option value="ジャンプミシン">ジャンプミシン</option>
+				<option value="角R">角R</option>
+				<option value="パウチ100ミクロン">パウチ100ミクロン</option>
+				<option value="パウチ150ミクロン">パウチ150ミクロン</option>
+				<option value="2つ折り">2つ折り</option>
+				<option value="3つ折り">3つ折り</option>
+				<option value="十文字折り">十文字折り</option>
+				<option value="ジャバラ山">ジャバラ山</option>
+				<option value="クリミ製本">クリミ製本</option>
+				<option value="ブロックリック製本">ブロックリック製本</option>
+				<option value="ツインループ">ツインループ</option>
+				<option value="デジシルク">デジシルク</option>
+				<option value="クリアPP">クリアPP</option>
+				<option value="マットPP">マットPP</option>
+			</select>
+	種類：<input type="text" id="shurui" name="shurui">
+	出荷日：<input type="date" id="shukkabi" name="shukkabi">から<input type="date" id="shukkabi2" name="shukkabi2">まで
+	作業者：<select id="sagyousya" name="sagyousya">
+			<option value="none">===検索したい名前を選択してください。===</option>
+			<option value="佐藤千鶴">佐藤千鶴（ゴジラ）</option>
+			<option value="利部亜希子">利部亜希子（コチュ）</option>
+			<option value="鮎澤香織">鮎澤香織（морщинистая бабушка）</option>
+			<option value="内田">内田</option>
+			<option value="畠山将伸">畠山将伸（ロリコン）</option>
+			<option value="大久保友美">大久保友美（偉そう）</option>
+			<option value="今村卓也">今村卓也（猪八戒）</option>
+			<option value="佐藤秀美">佐藤秀美（страшная девушка）</option>
+			<option value="青柳もえ">青柳もえ（老け顔）</option>
+			<option value="チェ・ソン">チェ・ソン</option>
+			<option value="諸杉雄大">諸杉雄大</option>
+			<option value="川平修">川平修</option>
+			<option value="その他">その他</option>
+		</select>
+	
+</form>	
+</div>
+
+	</nav>
+<div class="d-flex justify-content-center" role="group" aria-label="Basic example">
+	<button type="button" class="btn btn-primary" name="joken" id="joken">条件検索</button>	
+	<form th:action="@{/podzentai}" method="post">
+		<button type="submit" class="btn btn-danger" id="zentailist">全体リスト</button>
+	</form>	
+</div>	
+<div id="listsubete" class="listsyain" >
+<table class="table table-dark table-hover" border="3" id="podlist" style="border:1px solid black;margin-left:auto;margin-right:auto;"><tr>
+<th>指示番号</th><th>会社名</th><th>品名</th><th>加工情報</th><th>種類</th>
+<th>枚数</th><th>出荷日</th><th>作業者</th><th>作業終了時間</th></tr>
+  <tr th:each="zentailist: ${zentailist}">
+    <td th:text="${zentailist.iraibango}"></td>
+    <td th:text="${zentailist.kaisyamei}"></td>
+    <td><a th:href="@{/podkuwashiku(title=${zentailist.title})}" id="title"><span th:text="${zentailist.title}"></span></a></td>
+    <td th:text="${zentailist.kakoujouhou}"></td>
+    <td th:text="${zentailist.shurui}"></td>
+    <td th:text="${zentailist.maisu}"></td>
+    <td th:text="${zentailist.shukkabi}"></td>
+    <td th:text="${zentailist.sagyousya}"></td>
+    <td th:text="${zentailist.touroku_date}"></td>
+    <td><button th:if="${session.loginsyain=='管理者'}" class="sakujo" name="sakujo">削除</button><input type="hidden" th:value="${zentailist.id}" name="kakushibango" id="kakushibango"></td>
+    
+  </tr>
+  <h id="listsize"></h>
+	<h id="joukenlistsize"><span th:text="${listsize}"></span></h>
+  </table>	
+
+  <div class="pageing" th:if = "${listsize}">
+   <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+            <a class = "bango" style="color: orange;" th:if="${page != nowPage}" th:href="@{podzentai(page=${page-1})}" th:text ="${page}"></a>
+            <strong th:if="${page==nowPage}" th:text ="${page}" style="color:red;"></strong>
+  </th:block>
+  </div>
+  
+	
+</div>	
+
+	<a href = "/tourokugamen">梱包が終わりましたら、ここで入力してください。</a>
+	
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<!-- <script type="text/javascript" src="/js/podlist.js"></script> -->
+	<script type="text/javascript" th:src="@{/js/podlistjoken.js}"></script>
+	<script type="text/javascript" th:src="@{/js/podsakujo.js}"></script>
+</body>
+</html>

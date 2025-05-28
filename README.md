@@ -10,6 +10,11 @@ Spring Bootをベースに開発したWebアプリケーションです。
 - Thymeleaf
 - JavaScript
 - HTML/CSS
+- Ajax
+- jQuery
+- Bootstrap
+- MySQL
+- JPA Hibernate
 
 ## 📂 主な機能
 - ユーザー登録・ログイン

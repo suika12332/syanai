@@ -1,21 +1,18 @@
-# 🌟 Syanai - Webアプリ ポートフォリオ
+# 🌱 Pod Manager - Spring Boot Webアプリケーション
 
-このリポジトリは、EclipseとSpring Bootを使用して作成したWebアプリケーションのポートフォリオです。
-
----
-
-## 📦 プロジェクト一覧
-
-### 📌 3Fpodproject
-- Spring BootをベースにしたWebアプリケーション
-- 会員登録、ログイン、タスクリストの機能を実装
-- HTMLテンプレートは `src/main/resources/templates` にあります
-
----
+Spring Bootをベースに開発したWebアプリケーションです。  
+ユーザー登録、ログイン、タスクリスト管理などの機能が含まれています。
 
 ## 🛠 使用技術
-- Java
+- Java 17
 - Spring Boot
+- Maven
 - Thymeleaf
 - JavaScript
-- Maven
+- HTML/CSS
+
+## 📂 主な機能
+- ユーザー登録・ログイン
+- タスクリストの追加・削除
+- 条件による検索機能
+- JavaScriptによるインタラクション
